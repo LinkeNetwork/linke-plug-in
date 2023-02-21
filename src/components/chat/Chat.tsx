@@ -1,30 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { useHistory } from "react-router-dom"
+import Web3 from 'web3'
 import { detectMobile } from '../../utils/index'
 import collapseLogo from '../../assets/images/collapse.svg'
+import backLogo from '../../assets/images/back.svg'
 import RoomInfo from './RoomInfo'
 import './_style.scss'
+interface Window {
+  localStorage: any
+  ethereum: any;
+}
+declare let window: Window;
 function Chat(props: any) {
+  const [loading, setLoading] = useState(false)
+  const _iframe = useRef<HTMLIFrameElement>(null)
   const { roomAddress, chatHeight } = props
+  const history = useHistory()
   const [showChatRoom, setShowChatRoom] = useState(false)
   const [isCollapse, setIsCollapse] = useState(false)
   const [height, setHeight] = useState('100vh')
   const [address, setAddress] = useState('0xbe0acae9883e5e47c012c79241af84959010e9c3')
   const handleShowChat = () => {
-    setShowChatRoom(true)
+    setShowChatRoom(true)  
   }
   const handleCollapse = () => {
     setIsCollapse(!isCollapse)
   }
   const getAccount = async() => {
+    const web3 = new Web3(window.ethereum)
+    await window.ethereum.enable()
     const account = await (window as any).ethereum.request({ method: 'eth_requestAccounts' })
     window.localStorage.setItem('account', account[0])
-    console.log(account)
   }
+  useEffect(() => {
+    getAccount()
+  }, [])
   useEffect(() => {
     if (chatHeight) {
       setHeight(height)
     }
-    getAccount()
   }, [chatHeight])
   useEffect(() => {
     if (roomAddress) {
@@ -44,7 +58,11 @@ function Chat(props: any) {
         <div className='chat-box'>
           <div className={`chat-item ${isCollapse ? 'chat-item-collapse' : ''}`}>
             <div className='top-info'>
-              <div className='title'>Messages</div>
+              {
+                !showChatRoom 
+                ? <div className='title'>Messages</div>
+                : <img src={backLogo} alt="" className='collapse-logo back-logo' onClick={() => { setShowChatRoom(false) }} />
+              }
               <img src={collapseLogo} alt="" className='collapse-logo' onClick={handleCollapse} />
             </div>
             {
@@ -54,25 +72,14 @@ function Chat(props: any) {
             {
               showChatRoom &&
               <iframe
-                src={`https://linke.network/chat/${address}/ETHF?share=1`}
+                id="iframe"
+                ref={_iframe}
+                src={`https://www.linke.network/chat/${address}/ETHF?share=1`}
                 width="100%"
                 height="100%"
                 frameBorder="0"
               >
               </iframe>
-            }
-
-            {
-              showChatRoom && detectMobile() &&
-              <div style={{ height: height, overflow: 'hidden' }} className={`${detectMobile() ? 'room-client' : 'room-web'}`}>
-                <iframe
-                  src={`https://linke.network/chat/${address}/ETHF?share=1`}
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                >
-                </iframe>
-              </div>
             }
           </div>
         </div>
@@ -80,8 +87,11 @@ function Chat(props: any) {
       {
         showChatRoom && detectMobile() &&
         <div style={{ height: height }} className={`${detectMobile() ? 'room-client' : 'room-web'}`}>
+          <img src={backLogo} alt="" className='collapse-logo back-logo' onClick={() => { setShowChatRoom(false) }} />
           <iframe
-            src={`https://linke.network/chat/${address}/ETHF?share=1`}
+            id="iframe"
+            ref={_iframe}
+            src={`https://www.linke.network/chat/${address}/ETHF?share=1`}
             width="100%"
             height="100%"
             frameBorder="0"
