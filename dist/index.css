@@ -59,7 +59,6 @@ button, select {
   top: 18px; }
 
 .chat-box {
-  background-color: white;
   transition: all 300ms ease 0s;
   display: flex;
   justify-content: flex-end;
@@ -67,6 +66,7 @@ button, select {
   bottom: 0;
   right: 20px; }
   .chat-box .chat-item {
+    background: #fff;
     min-width: 350px;
     max-width: 400px;
     max-height: 680px;
@@ -85,7 +85,10 @@ button, select {
       padding: 16px;
       display: flex;
       justify-content: space-between;
-      align-items: center; }
+      align-items: center;
+      border-top-right-radius: 16px;
+      border-top-left-radius: 16px;
+      background: #fff; }
     .chat-box .chat-item .title {
       line-height: 24px;
       font-size: 20px;
