@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { createClient } from 'urql'
-import './_style.scss'
+import { Jazzicon } from '@ukstv/jazzicon-react'
+// import '../../styles/index.scss'
 function RoomInfo(props: any) {
   const { roomAddress, handleShowChat } = props
   interface IRoomInfo {
-    avatar: string;
+    id: string;
     name: string;
   }
-  const [roomInfo, setRoomInfo] = useState<IRoomInfo>({avatar: '', name: ''})
+  const [roomInfo, setRoomInfo] = useState<IRoomInfo>({id: '', name: ''})
   const getCurrentGroupInfo = async () => {
     const tokensQuery = `
       query{
@@ -34,7 +35,11 @@ function RoomInfo(props: any) {
   }, [])
   return (
     <div className='info-container' onClick={handleShowChat}>
-      <img src={roomInfo?.avatar} alt=""/>
+      {
+        roomInfo?.id &&
+        <Jazzicon address={roomInfo?.id} className="room-icon" />
+      }
+     
       <span className='name'>{roomInfo?.name}</span>
     </div>
     

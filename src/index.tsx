@@ -1,18 +1,17 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import './styles/index.scss'
 import Chat from "./components/chat/index"
 import reportWebVitals from "./reportWebVitals"
-import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-const container = document.getElementById('root')
-const root = createRoot(container!)
-root.render(
+
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Chat />
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 )
-
 reportWebVitals()
-// export { default as Chat } from "./components/chat";
+// export { default as Chat } from "./components/chat"
