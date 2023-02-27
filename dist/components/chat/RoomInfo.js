@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import React, { useEffect, useState } from 'react';
 import { createClient } from 'urql';
 import { Jazzicon } from '@ukstv/jazzicon-react';
-// import '../../styles/index.scss'
 function RoomInfo(props) {
     var _this = this;
     var roomAddress = props.roomAddress, handleShowChat = props.handleShowChat;

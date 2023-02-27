@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useHistory } from "react-router-dom"
 import { detectMobile } from '../../utils/index'
 import RoomInfo from './RoomInfo'
 interface Window {
@@ -10,7 +9,6 @@ interface Window {
 }
 declare let window: Window;
 function Chat(props: any) {
-  const history = useHistory()
   const [showBackLogo, setShowBackLogo] = useState(false)
   const _iframe = useRef<HTMLIFrameElement>(null)
   const { roomAddress, chatHeight } = props
@@ -92,16 +90,6 @@ function Chat(props: any) {
             showBackLogo &&
             <img src="https://heras.igengmei.com/b1076ea9-9366-4d75-8d68-7ec29cd96b3e-1677051145150" alt="" className='collapse-logo back-logo' onClick={() => { setShowChatRoom(false) }} />
           }
-          {/* <iframe
-            id="iframe"
-            ref={_iframe}
-            onLoad={_iframeOnload}
-            src={`http://172.30.8.71:3000/chat/${address}/ETHF?share=1`}
-            width="100%"
-            height="100%"
-            frameBorder="0"
-          >
-          </iframe> */}
         </div>
       }
     </div>

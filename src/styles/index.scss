@@ -42,10 +42,11 @@ button, select {
   text-transform: none;
 }
 .logo-wrapper {
-  position: absolute;
+  position: fixed;
   right: 20px;
   bottom: 20px;
   cursor: pointer;
+  background: #fff;
   img {
     width: 140px;
     height: 40px;

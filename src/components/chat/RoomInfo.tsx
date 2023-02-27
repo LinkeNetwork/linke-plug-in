@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createClient } from 'urql'
 import { Jazzicon } from '@ukstv/jazzicon-react'
-// import '../../styles/index.scss'
 function RoomInfo(props: any) {
   const { roomAddress, handleShowChat } = props
   interface IRoomInfo {

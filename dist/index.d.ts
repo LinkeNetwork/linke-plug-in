@@ -1,1 +1,1 @@
-import './styles/index.scss';
+export { default as Chat } from "./components/chat";

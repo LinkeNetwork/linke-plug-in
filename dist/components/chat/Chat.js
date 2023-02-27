@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useHistory } from "react-router-dom";
 import { detectMobile } from '../../utils/index';
 import RoomInfo from './RoomInfo';
 function Chat(props) {
-    var history = useHistory();
     var _a = useState(false), showBackLogo = _a[0], setShowBackLogo = _a[1];
     var _iframe = useRef(null);
     var roomAddress = props.roomAddress, chatHeight = props.chatHeight;

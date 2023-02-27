@@ -1,15 +1,15 @@
-# linke-plug-in
+# linke-community-plug-in
 Decentralized communities can be plug-and-play anywhere
 
 ## Install
 ```
-npm install linke-plug-in
+npm install linke-community-plug-in
 ```
 
 ## Using
 ```
-import 'linke-plug-in/dist/index.css';
-import { Chat } from "linke-plug-in"
+import 'linke-community-plug-in/dist/index.css';
+import { Chat } from "linke-community-plug-in"
 <Chat roomAddress={'0xbe0acae9883e5e47c012c79241af84959010e9c3'} chatHeight={"700px"}/>
 
 ```
