@@ -11,14 +11,13 @@ declare let window: Window;
 function Chat(props: any) {
   const [showBackLogo, setShowBackLogo] = useState(false)
   const _iframe = useRef<HTMLIFrameElement>(null)
-  const { roomAddress, chatHeight } = props
+  const { roomAddress } = props
   const [showChatRoom, setShowChatRoom] = useState(false)
   const [isCollapse, setIsCollapse] = useState(false)
   const [height, setHeight] = useState('100vh')
-  const [address, setAddress] = useState('0xbe0acae9883e5e47c012c79241af84959010e9c3')
   const handleShowChat = () => {
     if(detectMobile()) {
-      window.open(`https://www.linke.network/chat/${address}/ETHF?share=1`, '_self')
+      window.open(`https://www.linke.network/chat/${roomAddress}/ETHF?share=1`, '_self')
     }
     setShowChatRoom(true)  
   }
@@ -28,16 +27,6 @@ function Chat(props: any) {
   const _iframeOnload = () => {
     setShowBackLogo(true)
   }
-  useEffect(() => {
-    if (chatHeight) {
-      setHeight(height)
-    }
-  }, [chatHeight])
-  useEffect(() => {
-    if (roomAddress) {
-      setAddress(roomAddress)
-    }
-  }, [roomAddress])
   useEffect(() => {
     if(window.location.host !== 'www.linke.network' && detectMobile()) {
       setShowChatRoom(false)
@@ -64,7 +53,7 @@ function Chat(props: any) {
               <img src="https://heras.igengmei.com/b1076ea9-9366-4d75-8d68-7ec29cd96b3e-1677051145150" alt="" className='collapse-logo' onClick={handleCollapse} />
             </div>
             {
-              !showChatRoom && <RoomInfo roomAddress={address} handleShowChat={() => { setShowChatRoom(true) }} />
+              !showChatRoom && <RoomInfo roomAddress={roomAddress} handleShowChat={() => { setShowChatRoom(true) }} />
             }
 
             {
@@ -73,7 +62,7 @@ function Chat(props: any) {
                 id="iframe"
                 ref={_iframe}
                 onLoad={_iframeOnload}
-                src={`https://www.linke.network/chat/${address}/ETHF?share=1`}
+                src={`https://www.linke.network/chat/${roomAddress}/ETHF?share=1`}
                 width="100%"
                 height="100%"
                 frameBorder="0"
