@@ -49,9 +49,9 @@ function Chat(props: any) {
               {
                 !showChatRoom 
                 ? <div className='title'>Messages</div>
-                : <img src="https://heras.igengmei.com/44e88af1-a8ad-4933-9585-478971f02202-1677051124153" alt="" className='back-logo' onClick={() => { setShowChatRoom(false) }} />
+                : <img src="https://linkenetwork.s3.us-east-2.amazonaws.com/back.svg" alt="" className='back-logo' onClick={() => { setShowChatRoom(false) }} />
               }
-              <img src="https://heras.igengmei.com/b1076ea9-9366-4d75-8d68-7ec29cd96b3e-1677051145150" alt="" className='collapse-logo' onClick={handleCollapse} />
+              <img src="https://linkenetwork.s3.us-east-2.amazonaws.com/collapse.svg" alt="" className='collapse-logo' onClick={handleCollapse} />
             </div>
             {
               !showChatRoom && <RoomInfo roomAddress={roomAddress} handleShowChat={() => { setShowChatRoom(true) }} />
@@ -78,7 +78,7 @@ function Chat(props: any) {
         <div style={{ height: height }} className={`${detectMobile() ? 'room-client' : 'room-web'}`}>
           {
             showBackLogo &&
-            <img src="https://heras.igengmei.com/b1076ea9-9366-4d75-8d68-7ec29cd96b3e-1677051145150" alt="" className='collapse-logo back-logo' onClick={() => { setShowChatRoom(false) }} />
+            <img src="https://linkenetwork.s3.us-east-2.amazonaws.com/collapse.svg" alt="" className='collapse-logo back-logo' onClick={() => { setShowChatRoom(false) }} />
           }
         </div>
       }
