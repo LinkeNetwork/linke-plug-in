@@ -22,6 +22,7 @@ function Chat(props: any) {
     setShowChatRoom(true)  
   }
   const handleCollapse = () => {
+    setShowChatRoom(false)
     setIsCollapse(!isCollapse)
   }
   const _iframeOnload = () => {
@@ -48,7 +49,7 @@ function Chat(props: any) {
               {
                 !showChatRoom 
                 ? <div className='title'>Messages</div>
-                : <img src="https://heras.igengmei.com/44e88af1-a8ad-4933-9585-478971f02202-1677051124153" alt="" className='collapse-logo back-logo' onClick={() => { setShowChatRoom(false) }} />
+                : <img src="https://heras.igengmei.com/44e88af1-a8ad-4933-9585-478971f02202-1677051124153" alt="" className='back-logo' onClick={() => { setShowChatRoom(false) }} />
               }
               <img src="https://heras.igengmei.com/b1076ea9-9366-4d75-8d68-7ec29cd96b3e-1677051145150" alt="" className='collapse-logo' onClick={handleCollapse} />
             </div>
