@@ -13,17 +13,25 @@ function Chat(props: any) {
   const _iframe = useRef<HTMLIFrameElement>(null)
   const { roomAddress } = props
   const [showChatRoom, setShowChatRoom] = useState(false)
-  const [isCollapse, setIsCollapse] = useState(false)
+  const [isCollapseChatRoom, setIsCollapseChatRoom] = useState(false)
+  const [isCollapse, setIsCollapse] = useState(true)
   const [height, setHeight] = useState('100vh')
   const handleShowChat = () => {
     if(detectMobile()) {
       window.open(`https://www.linke.network/chat/${roomAddress}/ETHF?share=1`, '_self')
+    } else {
+      setShowChatRoom(true)
+      setIsCollapseChatRoom(true)
     }
-    setShowChatRoom(true)  
   }
   const handleCollapse = () => {
-    setShowChatRoom(false)
     setIsCollapse(!isCollapse)
+    if(!isCollapse) {
+      setShowChatRoom(false)
+    } else {
+      setIsCollapseChatRoom(true)
+      setShowChatRoom(true)
+    }
   }
   const _iframeOnload = () => {
     setShowBackLogo(true)
@@ -54,11 +62,11 @@ function Chat(props: any) {
               <img src="https://linkenetwork.s3.us-east-2.amazonaws.com/collapse.svg" alt="" className='collapse-logo' onClick={handleCollapse} />
             </div>
             {
-              !showChatRoom && <RoomInfo roomAddress={roomAddress} handleShowChat={() => { setShowChatRoom(true) }} />
+              !showChatRoom && <RoomInfo roomAddress={roomAddress} handleShowChat={handleShowChat} />
             }
 
             {
-              showChatRoom &&
+              showChatRoom && isCollapseChatRoom &&
               <iframe
                 id="iframe"
                 ref={_iframe}
